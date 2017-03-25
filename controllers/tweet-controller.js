@@ -24,7 +24,7 @@ function createTweet(req, res, next) {
     return res.status(400).json({ error: 'text field is required' });
   }
   if (!user) {
-    return res.status(400).json({ error: 'text field is required' });
+    return res.status(400).json({ error: 'user field is required' });
   }
   const newTweet = {
     text,
@@ -50,6 +50,9 @@ function getTweet(req, res, next) {
 
 function deleteTweet(req, res, next) {
   const tweetId = req.params.tweetId;
+  if (!tweetId) {
+    return res.status(400).json({ error: 'tweetId field is required' });
+  }
   const filteredTweets = tweets.filter(tweet => tweet.id !== tweetId);
   tweets = filteredTweets;
   return res.status(204).json({});
