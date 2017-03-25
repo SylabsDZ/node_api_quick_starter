@@ -1,18 +1,14 @@
-const express = require('express');
-const morgan = require('morgan');
-const bodyParser = require('body-parser');
+import express from 'express';
+import bodyParser from 'body-parser';
+import router from './services/router';
 
-
-var app = express();
-var router = require('./services/router');
-
-app.use(morgan('combined'));
+const app = express();
 app.use(bodyParser.json());
 app.use('/api', router);
 
-var PORT = process.env.PORT || 3000;
-var HOST = process.env.HOST || '0.0.0.0';
+const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST || '0.0.0.0';
 
-app.listen(PORT, HOST, function(){
+app.listen(PORT, HOST, () => {
   console.log('listening...');
 });
